@@ -14,7 +14,7 @@
       name="description"
       content="Bolos artesanais com sabor caseiro e apresentação impecável. Faça seu pedido em segundos pelo WhatsApp." />
     <meta name="robots" content="index, follow" />
-    <meta name="theme-color" content="#0b0b0c" />
+    <meta name="theme-color" content="#f36a00" />
 
     <!-- Open Graph / Social share (sem imagens externas) -->
     <meta property="og:type" content="website" />
@@ -42,31 +42,23 @@
     <style>
       /*
         ==========================================================
-        Design System (minimalista, premium, sofisticado)
+        Bolos Caseiros Express — Layout estilo “cartão central”
+        Referência visual: card central com botões empilhados
+        Paleta: laranja da logo + preto + branco (premium, clean)
         ==========================================================
       */
       :root {
-        --accent: #f36a00;
-        --ink: #0b0b0c;
-        --muted: rgba(11, 11, 12, 0.68);
-        --bg: #fbfbfc;
-        --card: rgba(255, 255, 255, 0.76);
+        --accent: #f36a00; /* laranja da logo */
+        --ink: #0b0b0c; /* preto */
+        --bg: #f6f1ea; /* off-white quente (premium) */
+        --card: rgba(255, 255, 255, 0.82);
         --stroke: rgba(10, 10, 12, 0.10);
-        --stroke-strong: rgba(10, 10, 12, 0.18);
-        --shadow: 0 22px 70px rgba(0, 0, 0, 0.12);
-        --shadow-soft: 0 14px 40px rgba(0, 0, 0, 0.10);
-        --radius: 18px;
-        --radius-lg: 28px;
-        --max: 1080px;
+        --shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
+        --shadow-soft: 0 14px 44px rgba(0, 0, 0, 0.12);
+        --radius: 28px;
+        --btn-radius: 16px;
         --focus: 0 0 0 3px rgba(243, 106, 0, 0.35);
-        --border-grad: linear-gradient(
-          135deg,
-          rgba(243, 106, 0, 0.55),
-          rgba(10, 10, 12, 0.24),
-          rgba(243, 106, 0, 0.22)
-        );
 
-        /* Tipografia elegante sem fontes externas */
         --font: ui-sans-serif, system-ui, -apple-system, Segoe UI, Roboto,
           Helvetica, Arial, "Apple Color Emoji", "Segoe UI Emoji";
         --font-display: ui-serif, "Iowan Old Style", "Palatino Linotype", Palatino,
@@ -75,10 +67,6 @@
 
       * {
         box-sizing: border-box;
-      }
-
-      html {
-        scroll-behavior: smooth;
       }
 
       body {
@@ -90,73 +78,10 @@
         -webkit-font-smoothing: antialiased;
         -moz-osx-font-smoothing: grayscale;
         text-rendering: optimizeLegibility;
-        overflow-x: hidden;
       }
 
       ::selection {
         background: rgba(243, 106, 0, 0.22);
-      }
-
-      /* Fundo premium com textura sutil (sem assets externos) */
-      .page {
-        min-height: 100dvh;
-        position: relative;
-        isolation: isolate;
-        background:
-          radial-gradient(1200px 650px at 10% 0%, rgba(243, 106, 0, 0.12), transparent 55%),
-          radial-gradient(900px 550px at 100% 15%, rgba(0, 0, 0, 0.06), transparent 55%),
-          radial-gradient(800px 520px at 50% 105%, rgba(243, 106, 0, 0.08), transparent 60%),
-          linear-gradient(rgba(0, 0, 0, 0.03) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(0, 0, 0, 0.03) 1px, transparent 1px);
-        background-size: auto, auto, auto, 56px 56px, 56px 56px;
-      }
-
-      /* Grain sutil para “acabamento premium” (bem leve) */
-      .page::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background-image:
-          radial-gradient(circle at 20% 10%, rgba(255, 255, 255, 0.55), transparent 42%),
-          radial-gradient(circle at 80% 0%, rgba(255, 255, 255, 0.35), transparent 46%),
-          repeating-linear-gradient(
-            0deg,
-            rgba(0, 0, 0, 0.018),
-            rgba(0, 0, 0, 0.018) 1px,
-            transparent 1px,
-            transparent 3px
-          );
-        opacity: 0.55;
-        mix-blend-mode: multiply;
-        pointer-events: none;
-        z-index: 0;
-      }
-
-      .page > * {
-        position: relative;
-        z-index: 1;
-      }
-
-      /* Borda premium com gradiente (1px) */
-      .hairline {
-        position: relative;
-        border: 1px solid var(--stroke);
-        background-clip: padding-box;
-      }
-
-      .hairline::before {
-        content: "";
-        position: absolute;
-        inset: -1px;
-        border-radius: inherit;
-        background: var(--border-grad);
-        pointer-events: none;
-        opacity: 0.85;
-        /* recorta o centro para virar “borda” */
-        -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0);
-        -webkit-mask-composite: xor;
-        mask-composite: exclude;
-        padding: 1px;
       }
 
       a {
@@ -164,22 +89,60 @@
         text-decoration: none;
       }
 
-      .container {
-        width: min(var(--max), calc(100% - 2 * 20px));
-        margin-inline: auto;
-      }
-
-      main {
-        padding-bottom: 120px; /* espaço para o sticky CTA no mobile */
-      }
-
-      .stack {
+      /*
+        ==========================================================
+        Fundo estilo referência (textura + vinheta leve)
+        ==========================================================
+      */
+      .page {
+        min-height: 100dvh;
         display: grid;
-        gap: 12px;
+        place-items: center;
+        padding: 44px 18px;
+        background:
+          radial-gradient(900px 520px at 50% 10%, rgba(243, 106, 0, 0.10), transparent 60%),
+          radial-gradient(700px 520px at 50% 105%, rgba(0, 0, 0, 0.07), transparent 55%),
+          repeating-linear-gradient(
+            135deg,
+            rgba(0, 0, 0, 0.02),
+            rgba(0, 0, 0, 0.02) 1px,
+            transparent 1px,
+            transparent 6px
+          );
       }
 
-      .topbar {
-        padding: 22px 0 6px;
+      /*
+        ==========================================================
+        Card central
+        ==========================================================
+      */
+      .card {
+        width: min(440px, 100%);
+        border-radius: var(--radius);
+        background: var(--card);
+        border: 1px solid var(--stroke);
+        box-shadow: var(--shadow);
+        backdrop-filter: blur(10px);
+        overflow: hidden;
+      }
+
+      .card-inner {
+        padding: 22px 18px 18px;
+      }
+
+      /* “hairline premium” — borda dupla bem sutil */
+      .hairline {
+        position: relative;
+      }
+
+      .hairline::after {
+        content: "";
+        position: absolute;
+        inset: 1px;
+        border-radius: inherit;
+        border: 1px solid rgba(255, 255, 255, 0.55);
+        pointer-events: none;
+        opacity: 0.85;
       }
 
       .brand {
@@ -187,29 +150,186 @@
         place-items: center;
         gap: 12px;
         text-align: center;
+        padding: 24px 18px 16px;
+        background:
+          radial-gradient(520px 220px at 50% 0%, rgba(243, 106, 0, 0.14), transparent 58%),
+          linear-gradient(180deg, rgba(255, 255, 255, 0.78), rgba(255, 255, 255, 0.58));
+        border-bottom: 1px solid rgba(0, 0, 0, 0.06);
       }
 
       .logo-link {
         display: inline-block;
-        border-radius: 28px;
+        border-radius: 26px;
       }
 
       .logo-img {
-        width: 172px;
+        width: 118px;
         height: auto;
         aspect-ratio: 1 / 1;
         display: block;
-        border-radius: 28px;
-        border: 1px solid rgba(255, 255, 255, 0.55);
-        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
+        border-radius: 26px;
+        box-shadow: 0 18px 55px rgba(0, 0, 0, 0.18);
+        border: 1px solid rgba(255, 255, 255, 0.65);
         background: #fff;
       }
 
       .brandline {
-        font-size: 0.82rem;
-        letter-spacing: 0.18em;
+        font-size: 0.78rem;
+        letter-spacing: 0.20em;
         text-transform: uppercase;
         color: rgba(11, 11, 12, 0.62);
+      }
+
+      .brandline-sub {
+        letter-spacing: 0.14em;
+      }
+
+      .title {
+        margin: 0 0 8px;
+        font-family: var(--font-display);
+        font-weight: 650;
+        font-size: clamp(1.35rem, 3.7vw, 1.65rem);
+        letter-spacing: -0.01em;
+        line-height: 1.15;
+        text-align: center;
+        text-wrap: balance;
+      }
+
+      .subtitle {
+        margin: 0 0 16px;
+        font-size: 0.98rem;
+        color: rgba(11, 11, 12, 0.64);
+        text-align: center;
+        text-wrap: pretty;
+      }
+
+      .proof {
+        margin: 16px 0 0;
+        padding-top: 14px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        font-size: 0.96rem;
+        color: rgba(11, 11, 12, 0.72);
+        text-align: center;
+      }
+
+      .proof strong {
+        color: rgba(11, 11, 12, 0.88);
+      }
+
+      /*
+        ==========================================================
+        Botões empilhados (microinterações)
+        ==========================================================
+      */
+      .actions {
+        display: grid;
+        gap: 10px;
+      }
+
+      .btn {
+        width: 100%;
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        gap: 10px;
+        padding: 14px 44px;
+        border-radius: var(--btn-radius);
+        border: 1px solid transparent;
+        font-weight: 720;
+        letter-spacing: 0.04em;
+        user-select: none;
+        position: relative;
+        overflow: hidden;
+        box-shadow: var(--shadow-soft);
+        transition: transform 180ms ease, box-shadow 180ms ease, filter 180ms ease;
+      }
+
+      .btn:focus-visible {
+        outline: none;
+        box-shadow: var(--focus), var(--shadow-soft);
+      }
+
+      .btn-icon {
+        width: 18px;
+        display: grid;
+        place-items: center;
+        opacity: 0.95;
+        flex: 0 0 auto;
+        position: absolute;
+        left: 18px;
+      }
+
+      .btn-text {
+        flex: 0 1 auto;
+      }
+
+      .btn--primary {
+        background: linear-gradient(180deg, #ff8a33, var(--accent));
+        color: var(--ink);
+        border-color: rgba(0, 0, 0, 0.10);
+      }
+
+      .btn--dark {
+        background: linear-gradient(180deg, rgba(11, 11, 12, 0.90), rgba(11, 11, 12, 0.82));
+        color: rgba(255, 255, 255, 0.96);
+        border-color: rgba(243, 106, 0, 0.14);
+      }
+
+      /* brilho sutil (sweep) */
+      .btn::after {
+        content: "";
+        position: absolute;
+        top: -60%;
+        left: -35%;
+        width: 45%;
+        height: 220%;
+        background: linear-gradient(90deg, transparent, rgba(255, 255, 255, 0.28), transparent);
+        transform: rotate(18deg) translateX(-120%);
+        opacity: 0;
+        pointer-events: none;
+        transition: transform 650ms ease, opacity 220ms ease;
+      }
+
+      @media (hover: hover) and (pointer: fine) {
+        .btn:hover {
+          transform: translateY(-2px);
+          box-shadow: 0 20px 60px rgba(0, 0, 0, 0.16);
+        }
+
+        .btn:hover::after {
+          transform: rotate(18deg) translateX(260%);
+          opacity: 0.95;
+        }
+
+        .btn:active {
+          transform: translateY(0);
+        }
+      }
+
+      /* pulso bem discreto no botão principal */
+      .pulse {
+        animation: pulseGlow 2.4s ease-in-out infinite;
+      }
+
+      @keyframes pulseGlow {
+        0%,
+        100% {
+          filter: drop-shadow(0 10px 18px rgba(243, 106, 0, 0.16));
+        }
+        50% {
+          filter: drop-shadow(0 14px 26px rgba(243, 106, 0, 0.24));
+        }
+      }
+
+      .foot {
+        padding: 14px 18px 18px;
+        border-top: 1px solid rgba(0, 0, 0, 0.06);
+        color: rgba(11, 11, 12, 0.58);
+        font-size: 0.86rem;
+        display: flex;
+        justify-content: space-between;
+        gap: 12px;
+        flex-wrap: wrap;
       }
 
       .sr-only {
@@ -224,619 +344,25 @@
         border: 0;
       }
 
-      /*
-        ==========================================================
-        Hero
-        ==========================================================
-      */
-      .hero {
-        padding: 18px 0 10px;
-      }
-
-      .hero-grid {
-        display: grid;
-        gap: 18px;
-        align-items: center;
-      }
-
-      .hero-card {
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.66);
-        backdrop-filter: blur(14px);
-        box-shadow: var(--shadow);
-        overflow: hidden;
-        position: relative;
-        display: grid;
-        transition: transform 220ms ease, box-shadow 220ms ease;
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .hero-card:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 30px 86px rgba(0, 0, 0, 0.14);
-        }
-      }
-
-      .hero-visual {
-        position: relative;
-        padding: 22px 18px 12px;
-        background:
-          radial-gradient(640px 320px at 25% 20%, rgba(243, 106, 0, 0.28), transparent 55%),
-          radial-gradient(520px 260px at 85% 15%, rgba(255, 255, 255, 0.08), transparent 60%),
-          linear-gradient(180deg, #070708, #0d0d10);
-      }
-
-      /* “acabamento” (grade + vinheta) para parecer mais sofisticado */
-      .hero-visual::before {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background:
-          linear-gradient(rgba(255, 255, 255, 0.06) 1px, transparent 1px),
-          linear-gradient(90deg, rgba(255, 255, 255, 0.06) 1px, transparent 1px);
-        background-size: 64px 64px;
-        opacity: 0.22;
-        pointer-events: none;
-      }
-
-      .hero-visual::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        background: radial-gradient(700px 380px at 50% 20%, transparent 35%, rgba(0, 0, 0, 0.55));
-        opacity: 0.55;
-        pointer-events: none;
-      }
-
-      .cake-wrap {
-        display: grid;
-        place-items: center;
-        position: relative;
-        z-index: 1;
-      }
-
-      .cake {
-        width: min(440px, 100%);
-        height: auto;
-        filter: drop-shadow(0 34px 42px rgba(0, 0, 0, 0.44));
-        transform: translateZ(0);
-        will-change: transform;
-      }
-
-      .hero-copy {
-        padding: 18px 18px 18px;
-        background: linear-gradient(180deg, rgba(255, 255, 255, 0.82), rgba(255, 255, 255, 0.64));
-        border-top: 1px solid rgba(255, 255, 255, 0.4);
-        text-align: center;
-      }
-
-      .kicker {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-        padding: 8px 12px;
-        border-radius: 999px;
-        border: 1px solid rgba(10, 10, 12, 0.10);
-        background: rgba(255, 255, 255, 0.62);
-        color: rgba(11, 11, 12, 0.62);
-        font-size: 0.82rem;
-        letter-spacing: 0.16em;
-        text-transform: uppercase;
-      }
-
-      .kicker i {
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 0 5px rgba(243, 106, 0, 0.14);
-      }
-
-      h1 {
-        margin: 14px 0 8px;
-        font-family: var(--font-display);
-        font-weight: 650;
-        font-size: clamp(1.95rem, 4.5vw, 3.1rem);
-        letter-spacing: -0.02em;
-        line-height: 1.05;
-        text-wrap: balance;
-      }
-
-      .rule {
-        width: 100%;
-        max-width: 360px;
-        margin: 10px auto 12px;
-        display: flex;
-        align-items: center;
-        gap: 10px;
-        opacity: 0.95;
-      }
-
-      .rule::before {
-        content: "";
-        width: 10px;
-        height: 10px;
-        border-radius: 999px;
-        background: var(--accent);
-        box-shadow: 0 0 0 7px rgba(243, 106, 0, 0.12);
-      }
-
-      .rule::after {
-        content: "";
-        height: 1px;
-        flex: 1 1 auto;
-        background: linear-gradient(
-          90deg,
-          rgba(10, 10, 12, 0.22),
-          rgba(10, 10, 12, 0.04)
-        );
-      }
-
-      .sub {
-        margin: 0 auto;
-        color: rgba(11, 11, 12, 0.66);
-        max-width: 46ch;
-        font-size: 1.06rem;
-        text-wrap: pretty;
-      }
-
-      .hero-actions {
-        margin-top: 16px;
-        display: grid;
-        gap: 10px;
-      }
-
-      /*
-        ==========================================================
-        Botões (microinterações + acessibilidade)
-        ==========================================================
-      */
-      .btn {
-        display: inline-flex;
-        align-items: center;
-        justify-content: center;
-        gap: 10px;
-        width: 100%;
-        padding: 15px 18px;
-        border-radius: 16px;
-        border: 1px solid transparent;
-        font-weight: 720;
-        letter-spacing: 0.06em;
-        text-transform: uppercase;
-        user-select: none;
-        position: relative;
-        overflow: hidden;
-        transition:
-          transform 180ms ease,
-          box-shadow 180ms ease,
-          background 180ms ease,
-          border-color 180ms ease,
-          color 180ms ease;
-        will-change: transform;
-      }
-
-      .btn:focus-visible {
-        outline: none;
-        box-shadow: var(--focus);
-      }
-
-      .btn--primary {
-        background: linear-gradient(180deg, #ff7f22, var(--accent));
-        color: #0b0b0c;
-        border-color: rgba(0, 0, 0, 0.10);
-        box-shadow: 0 20px 52px rgba(243, 106, 0, 0.32);
-        position: relative;
-      }
-
-      .btn--primary::after {
-        content: "";
-        position: absolute;
-        inset: 0;
-        border-radius: inherit;
-        background: radial-gradient(circle at 30% 20%, rgba(255, 255, 255, 0.32), transparent 55%);
-        opacity: 0.9;
-        pointer-events: none;
-      }
-
-      /* brilho “sweep” (bem sutil) */
-      .btn--primary::before {
-        content: "";
-        position: absolute;
-        top: -60%;
-        left: -35%;
-        width: 45%;
-        height: 220%;
-        background: linear-gradient(
-          90deg,
-          transparent,
-          rgba(255, 255, 255, 0.36),
-          transparent
-        );
-        transform: rotate(18deg) translateX(-120%);
-        opacity: 0;
-        pointer-events: none;
-        transition: transform 650ms ease, opacity 220ms ease;
-      }
-
-      .btn--ghost {
-        background: rgba(255, 255, 255, 0.52);
-        border-color: rgba(10, 10, 12, 0.12);
-        color: var(--ink);
-        box-shadow: 0 12px 34px rgba(0, 0, 0, 0.08);
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .btn:hover {
-          transform: translateY(-2px);
-        }
-
-        .btn--primary:hover {
-          box-shadow: 0 26px 62px rgba(243, 106, 0, 0.40);
-        }
-
-        .btn--primary:hover::before {
-          transform: rotate(18deg) translateX(260%);
-          opacity: 0.9;
-        }
-
-        .btn--ghost:hover {
-          border-color: rgba(243, 106, 0, 0.35);
-          box-shadow: 0 14px 32px rgba(0, 0, 0, 0.1);
-        }
-
-        .btn:active {
-          transform: translateY(0);
-        }
-      }
-
-      /* CTA principal com pulso sutil (desativado em reduce motion) */
-      .pulse {
-        animation: pulseGlow 2.2s ease-in-out infinite;
-      }
-
-      @keyframes pulseGlow {
-        0%,
-        100% {
-          box-shadow: 0 18px 45px rgba(243, 106, 0, 0.34);
-        }
-        50% {
-          box-shadow:
-            0 22px 58px rgba(243, 106, 0, 0.44),
-            0 0 0 10px rgba(243, 106, 0, 0.09);
-        }
-      }
-
       @media (prefers-reduced-motion: reduce) {
-        html {
-          scroll-behavior: auto;
-        }
         .pulse {
           animation: none;
         }
-        .reveal {
-          opacity: 1 !important;
-          transform: none !important;
-        }
-        .cake {
-          transform: none !important;
+        .btn,
+        .btn::after {
+          transition: none;
         }
       }
 
-      /*
-        ==========================================================
-        Seções
-        ==========================================================
-      */
-      .section {
-        padding: 22px 0;
-      }
-
-      .cta-card {
-        border-radius: var(--radius-lg);
-        background: rgba(255, 255, 255, 0.72);
-        backdrop-filter: blur(14px);
-        box-shadow: var(--shadow-soft);
-        padding: 20px;
-      }
-
-      .cta-actions {
-        display: grid;
-        gap: 10px;
-        margin-top: 14px;
-      }
-
-      .section h2 {
-        margin: 0 0 10px;
-        font-family: var(--font-display);
-        font-weight: 650;
-        font-size: clamp(1.28rem, 2.4vw, 1.65rem);
-        letter-spacing: -0.01em;
-        text-transform: none;
-        line-height: 1.1;
-        text-wrap: balance;
-      }
-
-      .section p {
-        margin: 0;
-        color: var(--muted);
-        font-size: 1.02rem;
-        max-width: 64ch;
-      }
-
-      .grid {
-        display: grid;
-        gap: 12px;
-      }
-
-      /* Ações: cards clicáveis (premium, menos “botão comum”) */
-      .action {
-        display: flex;
-        align-items: center;
-        justify-content: space-between;
-        gap: 14px;
-        padding: 14px 16px;
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.66);
-        backdrop-filter: blur(12px);
-        box-shadow: 0 16px 42px rgba(0, 0, 0, 0.08);
-        transition: transform 180ms ease, box-shadow 180ms ease;
-      }
-
-      .action-left {
-        display: inline-flex;
-        align-items: center;
-        gap: 12px;
-        min-width: 0;
-      }
-
-      .action-icon {
-        width: 38px;
-        height: 38px;
-        border-radius: 14px;
-        display: grid;
-        place-items: center;
-        background: linear-gradient(180deg, rgba(243, 106, 0, 0.18), rgba(0, 0, 0, 0.02));
-        color: var(--ink);
-        box-shadow: 0 14px 30px rgba(243, 106, 0, 0.10);
-        flex: 0 0 auto;
-      }
-
-      .action-text {
-        display: grid;
-        gap: 2px;
-        min-width: 0;
-      }
-
-      .action-title {
-        font-weight: 720;
-        letter-spacing: 0.02em;
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .action-sub {
-        font-size: 0.92rem;
-        color: rgba(11, 11, 12, 0.62);
-        white-space: nowrap;
-        overflow: hidden;
-        text-overflow: ellipsis;
-      }
-
-      .action-arrow {
-        font-size: 1.1rem;
-        opacity: 0.6;
-        transition: transform 180ms ease, opacity 180ms ease;
-        flex: 0 0 auto;
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .action:hover {
-          transform: translateY(-2px);
-          box-shadow: 0 22px 56px rgba(0, 0, 0, 0.10);
+      @media (min-width: 520px) {
+        .page {
+          padding: 56px 20px;
         }
-
-        .action:hover .action-arrow {
-          transform: translateX(2px);
-          opacity: 0.85;
-        }
-      }
-
-      .trust {
-        border-radius: var(--radius);
-        background: rgba(255, 255, 255, 0.70);
-        backdrop-filter: blur(10px);
-        box-shadow: var(--shadow-soft);
-        padding: 22px;
-      }
-
-      .trust strong {
-        color: var(--ink);
-      }
-
-      .fineprint {
-        font-size: 0.9rem;
-        color: rgba(92, 92, 98, 0.95);
-      }
-
-      /*
-        ==========================================================
-        Sticky CTA (mobile)
-        ==========================================================
-      */
-      .sticky {
-        position: fixed;
-        left: 12px;
-        right: 12px;
-        bottom: 12px;
-        padding: 12px 12px calc(12px + env(safe-area-inset-bottom));
-        background: rgba(255, 255, 255, 0.74);
-        backdrop-filter: blur(12px);
-        border-radius: 22px;
-        box-shadow: 0 22px 70px rgba(0, 0, 0, 0.16);
-        transform: translateY(110%);
-        transition: transform 260ms ease;
-        z-index: 50;
-      }
-
-      .sticky.is-on {
-        transform: translateY(0);
-      }
-
-      .sticky-inner {
-        width: min(var(--max), 100%);
-        margin-inline: auto;
-        display: grid;
-        gap: 10px;
-      }
-
-      .sticky .mini {
-        display: flex;
-        justify-content: space-between;
-        align-items: center;
-        gap: 12px;
-        color: var(--muted);
-        font-size: 0.95rem;
-      }
-
-      .mini-left {
-        display: inline-flex;
-        align-items: center;
-        gap: 10px;
-      }
-
-      .dot {
-        width: 9px;
-        height: 9px;
-        border-radius: 999px;
-        background: rgba(243, 106, 0, 0.95);
-        box-shadow: 0 0 0 6px rgba(243, 106, 0, 0.14);
-        flex: 0 0 auto;
-      }
-
-      /*
-        ==========================================================
-        Reveal animation (microinteração de rolagem)
-        ==========================================================
-      */
-      .reveal {
-        opacity: 0;
-        transform: translateY(10px);
-        transition: opacity 520ms ease, transform 520ms ease;
-      }
-
-      .reveal.is-in {
-        opacity: 1;
-        transform: translateY(0);
-      }
-
-      /*
-        ==========================================================
-        Layout desktop
-        ==========================================================
-      */
-      @media (min-width: 880px) {
-        main {
-          padding-bottom: 0;
-        }
-
-        .topbar {
-          padding: 26px 0 8px;
-        }
-
         .logo-img {
-          width: 190px;
+          width: 128px;
         }
-
-        .hero {
-          padding: 24px 0 10px;
-        }
-
-        .hero-grid {
-          grid-template-columns: 1.05fr 0.95fr;
-          gap: 22px;
-        }
-
-        .hero-copy {
-          padding: 26px 26px 26px;
-          text-align: left;
-        }
-
-        .rule {
-          margin: 10px 0 12px;
-          max-width: 420px;
-        }
-
-        .sub {
-          margin: 0;
-        }
-
-        .hero-actions {
-          grid-template-columns: 1fr;
-          max-width: 360px;
-        }
-
-        .cake-wrap {
-          padding: 30px 20px;
-        }
-
-        .sticky {
-          display: none;
-        }
-
-        footer {
-          padding: 22px 0 34px;
-        }
-
-        .grid.actions {
-          grid-template-columns: repeat(3, 1fr);
-        }
-      }
-
-      /* Footer */
-      footer {
-        padding: 22px 0 calc(34px + 110px); /* respiro para não ficar atrás do sticky */
-        color: rgba(92, 92, 98, 0.95);
-      }
-
-      footer .foot {
-        display: flex;
-        flex-wrap: wrap;
-        align-items: center;
-        justify-content: space-between;
-        gap: 10px;
-        border-top: 1px solid var(--stroke);
-        padding-top: 14px;
-      }
-
-      .links {
-        display: inline-flex;
-        flex-wrap: wrap;
-        gap: 10px;
-      }
-
-      .link {
-        padding: 8px 10px;
-        border-radius: 999px;
-        background: rgba(255, 255, 255, 0.64);
-        transition: box-shadow 180ms ease, transform 180ms ease;
-      }
-
-      @media (hover: hover) and (pointer: fine) {
-        .link:hover {
-          transform: translateY(-1px);
-          box-shadow: 0 16px 38px rgba(0, 0, 0, 0.08);
-        }
-      }
-
-      /* Acessibilidade: manter links visíveis em modo alto contraste */
-      @media (prefers-contrast: more) {
-        .btn--ghost,
-        .hairline,
-        .trust,
-        .logo-img,
-        .link {
-          border-color: rgba(0, 0, 0, 0.35);
+        .card-inner {
+          padding: 22px 22px 20px;
         }
       }
     </style>
@@ -844,298 +370,84 @@
 
   <body>
     <div class="page">
-      <header class="topbar" id="top">
-        <div class="container">
-          <div class="brand">
-            <!-- Logo centralizada (marca real: limpa + premium) -->
-            <a class="logo-link" href="#top" aria-label="Bolos Caseiros Express (voltar ao topo)">
-              <img
-                class="logo-img"
-                src="assets/logo.jpeg"
-                width="190"
-                height="190"
-                alt="Bolos Caseiros Express"
-                decoding="async"
-                fetchpriority="high" />
-              <span class="sr-only">Bolos Caseiros Express</span>
-            </a>
-            <div class="brandline">Doceria artesanal • pedidos no WhatsApp</div>
-          </div>
-        </div>
-      </header>
-
-      <main>
-        <!-- HERO (Topo) -->
-        <section class="hero">
-          <div class="container">
-            <div class="hero-grid">
-              <!-- Imagem de destaque (SVG premium embutido) -->
-              <div class="hero-card hairline reveal" data-reveal>
-                <div class="hero-visual">
-                  <div class="cake-wrap">
-                  <svg
-                    class="cake"
-                    viewBox="0 0 720 520"
-                    role="img"
-                    aria-label="Ilustração sofisticada de um bolo artesanal"
-                    id="cakeSvg">
-                    <defs>
-                      <linearGradient id="a" x1="0" x2="1" y1="0" y2="1">
-                        <stop offset="0" stop-color="#0b0b0c" stop-opacity="0.10" />
-                        <stop offset="1" stop-color="#0b0b0c" stop-opacity="0.02" />
-                      </linearGradient>
-                      <linearGradient id="b" x1="0" x2="0" y1="0" y2="1">
-                        <stop offset="0" stop-color="#ffffff" stop-opacity="0.98" />
-                        <stop offset="1" stop-color="#ffffff" stop-opacity="0.72" />
-                      </linearGradient>
-                      <linearGradient id="c" x1="0" x2="1" y1="0" y2="0">
-                        <stop offset="0" stop-color="#f36a00" />
-                        <stop offset="1" stop-color="#ff8a33" />
-                      </linearGradient>
-                      <filter id="noise" x="-20%" y="-20%" width="140%" height="140%">
-                        <feTurbulence type="fractalNoise" baseFrequency="0.9" numOctaves="2" stitchTiles="stitch" />
-                        <feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  0 0 0 .12 0" />
-                      </filter>
-                    </defs>
-
-                    <!-- base / prato -->
-                    <ellipse cx="360" cy="444" rx="250" ry="46" fill="rgba(0,0,0,0.07)" />
-                    <path
-                      d="M130 422c62 26 140 40 230 40s168-14 230-40c-12 34-63 64-230 64S142 456 130 422z"
-                      fill="url(#a)" />
-
-                    <!-- bolo (camadas) -->
-                    <g>
-                      <path
-                        d="M190 190c0-30 25-54 56-54h228c31 0 56 24 56 54v30c0 22-18 40-40 40H230c-22 0-40-18-40-40v-30z"
-                        fill="url(#b)" />
-                      <path
-                        d="M210 246c0-18 14-32 32-32h236c18 0 32 14 32 32v44c0 20-16 36-36 36H246c-20 0-36-16-36-36v-44z"
-                        fill="rgba(255,255,255,0.86)" />
-                      <path
-                        d="M220 332c0-18 14-32 32-32h216c18 0 32 14 32 32v58c0 22-18 40-40 40H260c-22 0-40-18-40-40v-58z"
-                        fill="rgba(255,255,255,0.78)" />
-
-                      <!-- faixa premium (assinatura) -->
-                      <path
-                        d="M230 306h260c10 0 18 8 18 18v18c0 10-8 18-18 18H230c-10 0-18-8-18-18v-18c0-10 8-18 18-18z"
-                        fill="url(#c)" />
-                      <path
-                        d="M255 336c18-10 40-16 62-16 32 0 54 10 76 20 22 10 44 20 76 20 20 0 42-6 61-16"
-                        fill="none"
-                        stroke="rgba(255,255,255,0.65)"
-                        stroke-width="6"
-                        stroke-linecap="round" />
-
-                      <!-- topo com ganache -->
-                      <path
-                        d="M232 160c0-18 14-32 32-32h192c18 0 34 6 46 16s20 24 20 40-8 30-20 40-28 16-46 16H264c-18 0-32-14-32-32v-48z"
-                        fill="rgba(11,11,12,0.85)" />
-                      <path
-                        d="M262 158c20-12 46-20 80-20 52 0 86 18 120 18 26 0 46-6 64-16"
-                        fill="none"
-                        stroke="rgba(243,106,0,0.95)"
-                        stroke-width="6"
-                        stroke-linecap="round" />
-
-                      <!-- brilho -->
-                      <path
-                        d="M250 214c20-12 46-18 78-18"
-                        fill="none"
-                        stroke="rgba(255,255,255,0.25)"
-                        stroke-width="10"
-                        stroke-linecap="round" />
-
-                      <!-- textura sutil -->
-                      <rect x="200" y="136" width="320" height="256" rx="44" ry="44" fill="transparent" filter="url(#noise)" opacity="0.55" />
-                    </g>
-
-                    <!-- detalhe minimal (velinha) -->
-                    <g transform="translate(0, -4)">
-                      <path d="M356 94c0-10 8-18 18-18s18 8 18 18v26h-36V94z" fill="rgba(255,255,255,0.92)" />
-                      <path d="M374 64c12 12 8 20 0 28-8-8-12-16 0-28z" fill="rgba(243,106,0,0.95)" />
-                    </g>
-                  </svg>
-                </div>
-                </div>
-
-                <div class="hero-copy">
-                  <div class="kicker" aria-label="Destaque">
-                    <i aria-hidden="true"></i>
-                    <span>Feito à mão • receita de família • acabamento impecável</span>
-                  </div>
-                  <h1>Sabor que marca momentos.</h1>
-                  <div class="rule" aria-hidden="true"></div>
-                  <p class="sub">
-                    Massa macia, recheios generosos e finalização elegante —
-                    o tipo de bolo que faz bonito na mesa e fica na memória.
-                  </p>
-
-                  <!-- Botão principal: PEDIR AGORA -->
-                  <div class="hero-actions">
-                    <a
-                      class="btn btn--primary pulse"
-                      href="https://wa.me/5565981448945"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Pedir agora pelo WhatsApp">
-                      PEDIR AGORA
-                      <span aria-hidden="true">→</span>
-                    </a>
-
-                    <a
-                      class="btn btn--ghost"
-                      href="#acoes"
-                      aria-label="Ver opções: cardápio, Instagram e localização">
-                      Ver opções
-                      <span aria-hidden="true">↓</span>
-                    </a>
-                  </div>
-                </div>
-              </div>
-
-              <!-- CTA Principal (reforço de conversão) -->
-              <section class="section reveal" data-reveal aria-label="Chamada principal">
-                <div class="cta-card hairline">
-                  <h2>Pedido rápido</h2>
-                  <p>
-                    Clique e diga o sabor + a data. A confirmação é rápida no WhatsApp.
-                  </p>
-                  <div class="cta-actions">
-                    <a
-                      class="btn btn--primary"
-                      href="https://wa.me/5565981448945"
-                      target="_blank"
-                      rel="noopener"
-                      aria-label="Abrir WhatsApp para fazer o pedido">
-                      PEDIR AGORA
-                      <span aria-hidden="true">✦</span>
-                    </a>
-                    <p class="fineprint">
-                      Atendimento direto, sem burocracia. Encomendas sob consulta.
-                    </p>
-                  </div>
-                </div>
-              </section>
-            </div>
-          </div>
-        </section>
-
-        <!-- Seção de Ações -->
-        <section id="acoes" class="section">
-          <div class="container">
-            <div class="grid actions">
-              <a
-                class="action hairline reveal"
-                data-reveal
-                href="https://wa.me/c/556581448945"
-                target="_blank"
-                rel="noopener"
-                aria-label="Abrir cardápio no WhatsApp">
-                <span class="action-left">
-                  <span class="action-icon" aria-hidden="true">🍰</span>
-                  <span class="action-text">
-                    <span class="action-title">Cardápio</span>
-                    <span class="action-sub">Sabores, tamanhos e valores</span>
-                  </span>
-                </span>
-                <span class="action-arrow" aria-hidden="true">→</span>
-              </a>
-
-              <a
-                class="action hairline reveal"
-                data-reveal
-                href="https://www.instagram.com/bolosc.express"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Abrir Instagram da Bolos Caseiros Express">
-                <span class="action-left">
-                  <span class="action-icon" aria-hidden="true">📸</span>
-                  <span class="action-text">
-                    <span class="action-title">Instagram</span>
-                    <span class="action-sub">Fotos reais e novidades</span>
-                  </span>
-                </span>
-                <span class="action-arrow" aria-hidden="true">→</span>
-              </a>
-
-              <a
-                class="action hairline reveal"
-                data-reveal
-                href="https://maps.app.goo.gl/zF6nD6M3FqBt86NL7"
-                target="_blank"
-                rel="noopener noreferrer"
-                aria-label="Abrir localização no Google Maps">
-                <span class="action-left">
-                  <span class="action-icon" aria-hidden="true">📍</span>
-                  <span class="action-text">
-                    <span class="action-title">Localização</span>
-                    <span class="action-sub">Retirada e área de atendimento</span>
-                  </span>
-                </span>
-                <span class="action-arrow" aria-hidden="true">→</span>
-              </a>
-            </div>
-          </div>
-        </section>
-
-        <!-- Prova / Confiança -->
-        <section class="section">
-          <div class="container">
-            <div class="trust hairline reveal" data-reveal>
-              <div class="stack">
-                <h2>Feito para encantar</h2>
-                <p>
-                  <strong>Receitas artesanais, ingredientes selecionados e acabamento impecável.</strong>
-                  Perfeitos para aniversários, cafés, reuniões e aquela sobremesa que vira assunto.
-                </p>
-                <p class="fineprint">
-                  Preferências, tamanhos e datas: confirme no WhatsApp.
-                </p>
-              </div>
-            </div>
-          </div>
-        </section>
-
-      </main>
-
-      <footer>
-        <div class="container">
-          <div class="foot">
-            <div>
-              <strong>Bolos Caseiros Express</strong>
-              <div class="fineprint">© <span id="year"></span> • Doceria artesanal</div>
-            </div>
-            <div class="links" aria-label="Links rápidos">
-              <a class="link hairline" href="https://wa.me/5565981448945" target="_blank" rel="noopener">WhatsApp</a>
-              <a class="link hairline" href="https://www.instagram.com/bolosc.express" target="_blank" rel="noopener noreferrer">Instagram</a>
-              <a class="link hairline" href="#" id="toTop" aria-label="Voltar ao topo">Topo</a>
-            </div>
-          </div>
-        </div>
-      </footer>
-
-      <!-- Sticky CTA (aparece após o usuário rolar; otimizado para mobile) -->
-      <div class="sticky hairline" id="sticky" aria-label="Barra fixa de pedido">
-        <div class="sticky-inner">
-          <div class="mini">
-            <span class="mini-left">
-              <span class="dot" aria-hidden="true"></span>
-              <span>Seu pedido em 1 clique</span>
-            </span>
-            <span class="fineprint">WhatsApp</span>
-          </div>
+      <!-- Card central (conforme a imagem de referência) -->
+      <section class="card hairline" aria-label="Bolos Caseiros Express">
+        <header class="brand">
           <a
-            class="btn btn--primary"
+            class="logo-link"
             href="https://wa.me/5565981448945"
             target="_blank"
             rel="noopener"
-            aria-label="Pedir agora pelo WhatsApp (barra fixa)">
-            PEDIR AGORA
-            <span aria-hidden="true">→</span>
+            aria-label="Falar no WhatsApp">
+            <img
+              class="logo-img"
+              src="assets/logo.jpeg"
+              width="128"
+              height="128"
+              alt="Bolos Caseiros Express"
+              decoding="async"
+              fetchpriority="high" />
           </a>
+          <div class="brandline brandline-sub">Doceria artesanal • pedidos no WhatsApp</div>
+        </header>
+
+        <div class="card-inner">
+          <h1 class="title">Peça do seu jeito <span aria-hidden="true">✦</span></h1>
+          <p class="subtitle">Escolha a forma mais prática para fazer seu pedido.</p>
+
+          <nav class="actions" aria-label="Ações rápidas">
+            <a
+              class="btn btn--primary pulse"
+              href="https://wa.me/5565981448945"
+              target="_blank"
+              rel="noopener"
+              aria-label="Falar no WhatsApp e fazer o pedido">
+              <span class="btn-icon" aria-hidden="true">💬</span>
+              <span class="btn-text">PEDIR AGORA</span>
+            </a>
+
+            <a
+              class="btn btn--dark"
+              href="https://wa.me/c/556581448945"
+              target="_blank"
+              rel="noopener"
+              aria-label="Ver cardápio no WhatsApp">
+              <span class="btn-icon" aria-hidden="true">🍰</span>
+              <span class="btn-text">Cardápio</span>
+            </a>
+
+            <a
+              class="btn btn--dark"
+              href="https://www.instagram.com/bolosc.express"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir Instagram da Bolos Caseiros Express">
+              <span class="btn-icon" aria-hidden="true">📸</span>
+              <span class="btn-text">Instagram</span>
+            </a>
+
+            <a
+              class="btn btn--dark"
+              href="https://maps.app.goo.gl/zF6nD6M3FqBt86NL7"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Abrir localização no Google Maps">
+              <span class="btn-icon" aria-hidden="true">📍</span>
+              <span class="btn-text">Localização</span>
+            </a>
+          </nav>
+
+          <p class="proof">
+            <strong>Bolos feitos com cuidado, sabor e apresentação impecável.</strong>
+            Perfeitos para aniversários, cafés e momentos especiais.
+          </p>
         </div>
-      </div>
+
+        <footer class="foot" aria-label="Rodapé">
+          <span>Atendimento rápido e direto</span>
+          <span>© <span id="year"></span></span>
+        </footer>
+      </section>
     </div>
 
     <noscript>
@@ -1145,104 +457,10 @@
     </noscript>
 
     <script>
-      /*
-        ==========================================================
-        JS leve: microinterações + UX focado em conversão
-        - Reveal on scroll
-        - Sticky CTA no mobile
-        - Parallax sutil no bolo (apenas em pointer fine)
-        ==========================================================
-      */
-
+      // Utilitário leve: ano do rodapé
       (function () {
-        const prefersReducedMotion = window.matchMedia(
-          "(prefers-reduced-motion: reduce)"
-        ).matches;
-
-        // Ano no footer
         const yearEl = document.getElementById("year");
         if (yearEl) yearEl.textContent = String(new Date().getFullYear());
-
-        // Botão "Topo"
-        const toTop = document.getElementById("toTop");
-        if (toTop) {
-          toTop.addEventListener("click", (e) => {
-            e.preventDefault();
-            window.scrollTo({ top: 0, behavior: prefersReducedMotion ? "auto" : "smooth" });
-          });
-        }
-
-        // Reveal on scroll
-        const revealEls = Array.from(document.querySelectorAll("[data-reveal]"));
-        if (!prefersReducedMotion && revealEls.length) {
-          const io = new IntersectionObserver(
-            (entries) => {
-              for (const entry of entries) {
-                if (entry.isIntersecting) {
-                  entry.target.classList.add("is-in");
-                  io.unobserve(entry.target);
-                }
-              }
-            },
-            { threshold: 0.14 }
-          );
-          revealEls.forEach((el) => io.observe(el));
-        } else {
-          revealEls.forEach((el) => el.classList.add("is-in"));
-        }
-
-        // Sticky CTA (após rolar um pouco)
-        const sticky = document.getElementById("sticky");
-        const hero = document.querySelector(".hero");
-
-        if (sticky && hero) {
-          const ioSticky = new IntersectionObserver(
-            (entries) => {
-              const entry = entries[0];
-              // Quando o hero sai de vista, mostra o sticky
-              sticky.classList.toggle("is-on", !entry.isIntersecting);
-            },
-            { threshold: 0.2 }
-          );
-          ioSticky.observe(hero);
-        }
-
-        // Parallax sutil no SVG do bolo (somente desktop / pointer fino)
-        const cake = document.getElementById("cakeSvg");
-        const finePointer = window.matchMedia("(hover: hover) and (pointer: fine)").matches;
-
-        if (!prefersReducedMotion && finePointer && cake) {
-          let targetX = 0;
-          let targetY = 0;
-          let currentX = 0;
-          let currentY = 0;
-          let raf = 0;
-
-          function animate() {
-            currentX += (targetX - currentX) * 0.08;
-            currentY += (targetY - currentY) * 0.08;
-            cake.style.transform = `translate3d(${currentX}px, ${currentY}px, 0)`;
-            raf = requestAnimationFrame(animate);
-          }
-
-          function onMove(e) {
-            const rect = cake.getBoundingClientRect();
-            const x = (e.clientX - (rect.left + rect.width / 2)) / rect.width;
-            const y = (e.clientY - (rect.top + rect.height / 2)) / rect.height;
-            targetX = Math.max(-10, Math.min(10, x * 16));
-            targetY = Math.max(-10, Math.min(10, y * 16));
-            if (!raf) raf = requestAnimationFrame(animate);
-          }
-
-          function onLeave() {
-            targetX = 0;
-            targetY = 0;
-          }
-
-          window.addEventListener("pointermove", onMove, { passive: true });
-          window.addEventListener("pointerleave", onLeave);
-          window.addEventListener("blur", onLeave);
-        }
       })();
     </script>
   </body>
